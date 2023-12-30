@@ -5,6 +5,7 @@
 import sys
 sys.path.append('.')
 
+
 import os
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
@@ -37,4 +38,6 @@ class User(BaseModel, Base):
         'Review',
         cascade="all, delete, delete-orphan",
         backref='user'
+    ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else None
+
     ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else None
