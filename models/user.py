@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """This module defines a class User"""
+
 import sys
 sys.path.append('.')
 import os
@@ -33,4 +34,6 @@ class User(BaseModel, Base):
         'Review',
         cascade="all, delete, delete-orphan",
         backref='user'
+    ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else None
+
     ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else None
